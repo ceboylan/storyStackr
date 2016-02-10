@@ -1,10 +1,10 @@
 from flask import request
 from flask import render_template
 from topify import app
-from sqlalchemy import create_engine
-from sqlalchemy_utils import database_exists, create_database
+# from sqlalchemy import create_engine
+# from sqlalchemy_utils import database_exists, create_database
 import pandas as pd
-import psycopg2
+# import psycopg2
 
 # user = 'ceboylan' #add your username here (same as previous postgreSQL)
 # host = 'localhost'
@@ -18,12 +18,12 @@ import psycopg2
 master = pd.DataFrame.from_csv('master_topic_info_sums_imgs.csv')
 # master.to_sql('master_data_table', db, if_exists='replace')
 
-# @app.route('/')
+@app.route('/')
 @app.route('/index')
 def index():
    return "Hello, World!"
    
-@app.route('/')
+@app.route('/input')
 def cesareans_input():
     return render_template("input.html")
 
