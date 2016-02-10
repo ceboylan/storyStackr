@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <link rel="icon" href="../../favicon.ico">	 
+
+   <title>Starter Template for Bootstrap</title>
+
+   <!-- Bootstrap core CSS -->
+   <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+   <!-- Custom styles for this template -->
+   <link href="starter-template.css" rel="stylesheet">
+
+   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+   <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+   <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   <![endif]-->
+ </head>
+
+ <body>
+
+   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+     <div class="container">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">storyStackr</a>
+       </div>
+       <div class="collapse navbar-collapse">
+         <ul class="nav navbar-nav">
+           <li class="active"><a href="#">Home</a></li>
+           <li><a href="#about">About</a></li>
+           <li><a href="#contact">Contact</a></li>
+         </ul>
+       </div><!--/.nav-collapse -->
+     </div>
+   </div>
+<br><br>
+ <div class="container">
+    <div class="starter-template">
+        <h2>What topics are most popular in your story's genre?</h2>
+				<p>Find which topics in your target genre are the most interesting to your readers, based on story upvotes on the <a href="https://www.wattpad.com/home">wattpad</a> writing community. We'll also recommend the proportion (%) of your story's content that should be dedicated to each topic based on what topic mixtures get the most votes. </p>
+        <p>Enter a genre to investigate!</p>
+    </div>
+
+    <div class = "container">
+
+      <form  action="/output" method="GET">
+        <div class="form-group">
+					<label for="genre">Genre: </label>
+									  <select id="genre" name='genre' value={{patient}} style="margin: 1px 20px;">
+										  <option value="Action">Action</option>
+											<option value="Adventure">Adventure</option>
+										  <option value="ChickLit">"ChickLit"</option>
+										  <option value="Classics">Classics</option>
+										  <option value="Fanfiction">Fanfiction</option>
+											<option value="Fantasy">Fantasy</option>
+											<option value="General Fiction">General Fiction</option>
+											<option value="Historical Fiction">Historical Fiction</option>
+											<option value="Horror">Horror</option>
+											<option value="Humor">Humor</option>
+											<option value="Mature">Mature</option>
+											<option value="Mystery / Thriller">Mystery / Thriller</option>
+											<option value="Non-Fiction">Non-Fiction</option>
+											<option value="Paranormal">Paranormal</option>
+											<option value="Poetry">Poetry</option>
+											<option value="Public Domain">Public Domain</option>
+											<option value="Romance">Romance</option>
+											<option value="Science Fiction">Science Fiction</option>
+											<option value="Short Story">Short Story</option>
+											<option value="Spiritual">Spiritual</option>
+											<option value="Teen Fiction">Teen Fiction</option>
+											<option value="Vampire">Vampire</option>
+											<option value="Werewolf">Werewolf</option>
+											
+									  </select>
+          <!-- <label for="genre">Genre:</label>
+          <input type="text" id="genre" name='genre' placeholder="e.g. Horror"> -->
+        </div>
+				
+        <div class="form-group">
+					<p>(optional) Enter your story's tags (key words)</p>
+          <label for="input_tags">Tags:</label>
+          <input type="text" id="input_tags" name='input_tags' placeholder="e.g. love, death, taxes">
+        </div>
+				
+        <div class="form-group">
+					<p>(optional) Enter your story's summary</p>
+          <label for="input_summary">Summary:</label>
+          <input type="text" id="input_summary" name='input_summary' placeholder="e.g. It was the best of times, it was the worst of times.">
+        </div>
+          <button type="submit" class="btn btn-default btn-lg">Find popular topics in this genre and see if your story includes them</button>
+        </div>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+
+  </div> <!-- /.container-->
+
+    <div class="container">
+      <div class="starter-template">
+        <h3>Top topics in the {{ patient }} genre:</h3>
+        <p class="lead">Here are your readers' favorite topics in the {{ patient }} genre! <br> Topic proportion indicates what percentage of the content of a story should be devoted to that topic in order to best engage your readers. Take particular note of the 2nd through 5th best topics, as these are <b>topics that one might overlook in the {{ patient}} genre, but really excite {{ patient }} readers.</b> <br> Topics are defined based on the meaningful associations of terms across stories. We left the topics unlabeled, but you can get an idea of what each topic is really about by the top terms in that topic. <br>Also check out the "representative story" for that topic: this story will not necessarily be the highest rated, but it is the story the content of which is most highly concentrated on that particular topic.</p>
+      </div>
+
+      <table class="table table-hover">
+			<tr><th>Topic proportion predictive of most upvotes</th><th>Topic's top terms</th><th>Story most representative of this topic</th></tr> 
+      {% for topic in topics %}
+      <!-- <tr><td>{{ topic['topic_proportion'] }}</td><td>{{ topic['topic_num']}}</td><td>{{ topic['rep_url']}}</td><td> {{ topic['term_str'] }}</td></tr> -->			
+      <!-- <tr><td>{{ topic['topic_proportion'] }}</td><td><a href={{topic['rep_url']}}>{{ topic['topic_num']}}</a></td><td> {{ topic['term_str'] }}</td></tr> -->
+      <tr><td>{{ topic['topic_proportion'] }}</td><td>{{ topic['topic_num'] }}<img src="../static/topic_imgs/{{ topic['img'] }}" alt="No representative story found"></td><td><a href="#" data-toggle="popover" title="Blurb of story most representative of this topic" data-content= "{{ topic['rep_summary'] }}" >Blurb of topic-typical story (click)</a>, <a href={{topic['rep_url']}}>representative story</a></td></tr>
+			<!-- <a href="#" data-toggle="popover" title="Popover Header" data-content= {{ topic['term_str'] }} >{{ topic['term_str'] }}</a> -->
+      {% endfor %}
+      </table>
+			
+			<script>
+			$(document).ready(function(){
+			    $('[data-toggle="popover"]').popover();   
+			});
+			</script>
+
+
+     </div><!-- /.container -->
+
+    <div class="container">
+      <div class="starter-template">
+        <h3>Your Story's Matching and Missing Key Words:</h3>
+        <p class="lead">Based on the top terms in the most popular topics in the {{patient}} genre, here are the key words you have, and the ones you may like to think about.<br>Your matching keywords are: </p> 				<ul>
+        {% for n in matching_keywords %}
+        <li>{{n}}</li>
+        {% endfor %}
+      </ul>
+        <p class="lead">Your missing keywords are: </p>
+				<ul>
+        {% for m in missing_keywords %}
+        <li>{{m}}</li>
+        {% endfor %}
+      </ul><!-- {{matching_keywords}}<br>Your missing keywords are {{missing_keywords}}</p> -->
+      </div>
+
+
+      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="static/js/bootstrap.min.js"></script>
+
+
+     </div><!-- /.container -->
+
+
+   <!-- Bootstrap core JavaScript
+   ================================================== -->
+   <!-- Placed at the end of the document so the pages load faster -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+</body>
+</html>
