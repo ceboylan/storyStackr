@@ -24,41 +24,6 @@ master.to_sql('master_data_table', db, if_exists='replace')
 def index():
    return "Hello, World!"
    
-   
-@app.route('/db')
-def horror_page():
-  #sql version
-  sql_query = """
-              SELECT * FROM master_data_table WHERE genre='Horror';
-              """
-  query_results = pd.read_sql_query(sql_query,con)
-  horrors = ""
-  # print query_results[:5]
-  for i in range(0,5):
-      horrors += str(query_results.iloc[i]['topic_proportion'])
-      horrors += "<br>"
-  return horrors
-  #pandas version
-  # master_data = pd.DataFrame.from_csv('master_topic_info_sums.csv')
-  # # master_data['topic_proportion'] = str(master_data['topic_proportion'])
-  # fantasy_topic_data=master_data.loc[(master_data['genre'] == 'Fantasy')]
-  # test=""
-  # for i in range(0,5):
-  #   test += str(fantasy_topic_data.iloc[i]['topic_proportion'])
-  #   test += "<br>"
-  # return test
-  
-@app.route('/db_fancy')
-def cesareans_page_fancy():
-    sql_query = """
-               SELECT topic_proportion, genre, term_str FROM master_data_table WHERE genre='Horror';
-                """
-    query_results=pd.read_sql_query(sql_query,con)
-    topics = []
-    for i in range(0,query_results.shape[0]):
-        topics.append(dict(topic_proportion=str(query_results.iloc[i]['topic_proportion']), genre=query_results.iloc[i]['genre'], term_str=query_results.iloc[i]['term_str']))
-    return render_template('cesareans.html',topics=topics)
-    
 @app.route('/input')
 def cesareans_input():
     return render_template("input.html")
