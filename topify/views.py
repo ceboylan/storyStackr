@@ -14,6 +14,10 @@ db = create_engine('postgres://%s%s/%s'%(user,host,dbname))
 con = None
 con = psycopg2.connect(database = dbname, user = user)
 
+if not database_exists(db.url):
+    create_database(db.url)
+master = pd.DataFrame.from_csv('master_topic_info_sums_imgs.csv')
+master.to_sql('master_data_table', db, if_exists='replace')
 
 @app.route('/')
 @app.route('/index')
