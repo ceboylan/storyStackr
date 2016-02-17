@@ -1,7 +1,7 @@
 # storyStackr
 identify and diversify topics in your wattpad story
 
-Wattpad_crawled_.csv files: 4000+ stories scraped from wattpad.com, the world's largest writing community. Wattpad is a story repository and social network where we can not only scrape author-provided tags, summaries, and chapters (the latter not yet done), but also meta data like the number of times a sotry was read and how many upvotes it received.
+Wattpad_crawled_.csv files: 4000+ stories scraped from wattpad.com, the world's largest writing community. Wattpad is a story repository and social network where we can not only scrape author-provided tags, summaries, and chapters (note: not all chapters are scraped), but also meta data like the number of times a sotry was read and how many upvotes it received.
 
 storyStackr.R: code for 
 (1) cleaning and processing the scraped data, 
